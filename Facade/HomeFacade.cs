@@ -55,4 +55,9 @@ public class HomeFacade
             lastChannelNum = number;
         }
     }
+    
+    /// <summary>
+    /// Включаем ТВ, если "помним" последний канал - сразу переключаем на него
+    /// </summary>
+    public void OffTV() => _tv.Off();
 }

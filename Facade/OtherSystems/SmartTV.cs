@@ -27,17 +27,18 @@ public class SmartTV
         isEnabled = true;
         if (_lastChannel != string.Empty)
         {
-            _currentChannel = _channels.FirstOrDefault(ch=>ch.Equals(_lastChannel)) ?? "none";
+            _currentChannel = _channels.FirstOrDefault(ch=>ch.Equals(_lastChannel)) ?? "1";
         }
 
         return isEnabled;
     }
     public bool SwitchToChannel(int number)
     {
-        if (number <= _channels.Count)
+        if (number <= _channels.Count && number > 0)
         {
-            _currentChannel = _channels[number];
+            _currentChannel = _channels[number - 1];
             _lastChannel = _currentChannel;
+            Console.WriteLine($"Now TV on {_currentChannel}");
         }
         else
         {
@@ -48,4 +49,6 @@ public class SmartTV
     }
 
     public int GetCurrentChannel => _channels.IndexOf(_currentChannel) + 1;
+
+    public void Off() => isEnabled = false;
 }
